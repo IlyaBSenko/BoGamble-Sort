@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class BogoSortInOne {
     public static void main(String[] args) {
-        int[] arr = {4, 5, 6, 0, 7, 8, 9, 1, 2, 3};
+        int[] arr = {4, 5, 6, 0, 7, 8, 9, 1, 2, 3, 11, 12, 13};
 
         BogoSortInOne now = new BogoSortInOne(); // ✅ class name fixed
         System.out.print("Unsorted: ");
