@@ -1,9 +1,11 @@
+import java.util.Random;
+
 public class BogoSort 
 {
 	public static void main(String[] args)
 	{
 		//Enter array to be sorted here
-		int[] arr={4,5,6,0,7,8,9,1,2,3};
+		int[] arr={4, 5, 6, 0, 7, 8, 9, 8, 9, 10, 11, 12};
  
 		BogoSort now=new BogoSort();
 		System.out.print("Unsorted: ");
@@ -49,6 +51,10 @@ public class BogoSort
 		for(int i=0;i<arr.length;i++)
 			System.out.print(arr[i]+" ");
 		System.out.println();
+	}
+	public int runsUntilOneShuffleSort(int[] arr, Random random) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'runsUntilOneShuffleSort'");
 	} 
 }
 
