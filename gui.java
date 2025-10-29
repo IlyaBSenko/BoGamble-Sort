@@ -5,7 +5,7 @@ import java.awt.*;
 // add timer to count how much time it takes to sort using bogamble sort
 // add entry button to gamble how much time it would take (you win if you get close within the seconds???)
 // add different length sizes to sort
-
+//from brady
 public class GUI extends JFrame {
 
     private JButton button;
