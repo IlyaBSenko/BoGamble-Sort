@@ -16,7 +16,7 @@ public class GUI extends JFrame {
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.ORANGE); // change later maybe
-        setLayout(null);                              // change later maybe
+        setLayout(null);                      // change later maybe
 
         button = new JButton("Sort");
         button.setBounds(100, 100, 100, 100);
