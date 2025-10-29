@@ -6,6 +6,7 @@ import java.awt.*;
 // add entry button to gamble how much time it would take (you win if you get close within the seconds???)
 // add different length sizes to sort
 //from brady
+
 public class GUI extends JFrame {
 
     private JButton button;
@@ -16,7 +17,7 @@ public class GUI extends JFrame {
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.ORANGE); // change later maybe
-        setLayout(null);                      // change later maybe
+        setLayout(null);                              // change later maybe
 
         button = new JButton("Sort");
         button.setBounds(100, 100, 100, 100);
