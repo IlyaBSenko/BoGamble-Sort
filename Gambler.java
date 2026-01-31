@@ -1,59 +1,98 @@
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 
-public class Gambler 
-{
-	public static void main(String[] args)
-	{
-		//Enter array to be sorted here
-		int[] arr={4, 5, 6, 0, 7, 8, 9, 8, 9, 10, 11};
- 
-		Gambler now=new Gambler();
-		System.out.print("Unsorted: ");
-		now.display1D(arr);
- 
-		now.bogo(arr);
- 
-		System.out.print("Sorted: ");
-		now.display1D(arr);
-	}
-	void bogo(int[] arr)
-	{
-		//Keep a track of the number of shuffles
-		int shuffle=1;
-		for(;!isSorted(arr);shuffle++)
-			shuffle(arr);
-		//Boast
-		System.out.println("This took "+shuffle+" shuffles.");
-	}
-	void shuffle(int[] arr)
-	{
-		//Standard Fisher-Yates shuffle algorithm
-		int i=arr.length-1;
-		while(i>0)
-			swap(arr,i--,(int)(Math.random()*i));
-	}
-	void swap(int[] arr,int i,int j)
-	{
-		int temp=arr[i];
-		arr[i]=arr[j];
-		arr[j]=temp;
-	}
-	boolean isSorted(int[] arr)
-	{
- 
-		for(int i=1;i<arr.length;i++)
-			if(arr[i]<arr[i-1])
-				return false;
-		return true;
-	}
-	void display1D(int[] arr)
-	{
-		for(int i=0;i<arr.length;i++)
-			System.out.print(arr[i]+" ");
-		System.out.println();
-	}
+// add proper java docs to all methods
+
+public class gambler {
+    // TODO:
+    // fix gui
+    // add option for random integers for a certain size
+    // add option for random size with random integers
+    public static void main(String[] args) {
+        int[] array;
+        try (Scanner userInput = new Scanner(System.in)) {
+            System.out.println("Enter the size of the array you want to be sorted!");
+            System.out.println("The lower the size, the faster it will be sorted!");
+            int arraySize = userInput.nextInt(); // get the size of the array first
+            array = new int[arraySize]; // make an array on the user input size
+            System.out.println("Enter the " + arraySize + " (unsorted) integers, seperated by spaces:");
+            // read each integer and store it in the array
+            for (int i = 0; i < arraySize; i++) {
+                array[i] = userInput.nextInt();
+            }
+        }
+
+        System.out.println("Your array consists of the numbers: " + Arrays.toString(array));
+        System.out.println("We will now shuffle it until it is sorted!");
+        System.out.println("Shuffling...");
+        
+        Instant start = Instant.now();
+        int shuffles = shuffled(array);
+        Instant end = Instant.now();
+
+        Duration duration = Duration.between(start, end);
+        seconds(duration);
+        
+    }
+
+    private static void seconds(Duration duration) {
+        if (duration.toMillis() > 1000) {
+            System.out.println("It took " + duration.toMillis() + " milliseconds to sort.");
+            System.out.println("It took " + duration.toSeconds() + " seconds to sort.");
+        }
+        System.out.println("It took " + duration.toMillis() + " milliseconds to sort.");
+    }
+
+    /**
+     * Method to check if given array is sorted
+     * 
+     * @param array the user array
+     * @return
+     */
+    private static boolean isSorted(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * method to shuffle an array randomly
+     * @param array
+     */
+    private static void shuffle(int[] array) {
+        Random rand = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            // pick a random index from 0 - i
+            int j = rand.nextInt(i + 1);
+
+            // swap array[i] with the element at random index j
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+
+    /**
+     * method that calles shuffle, counts amount of shuffles and displays the final result
+     * @param array
+     * @return
+     */
+    public static int shuffled(int[] array) {
+        int shuffles = 0;
+        
+        while (!isSorted(array)) {
+            shuffle(array);
+            shuffles++;
+        }
+        System.out.println("Here is your sorted array: " + Arrays.toString(array));
+        System.out.println("It took " + shuffles + " shuffles to sort");
+        
+        return shuffles;
+    }
 }
-
-
-
-
-
