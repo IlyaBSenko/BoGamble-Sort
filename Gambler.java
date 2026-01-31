@@ -4,13 +4,12 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-// add proper java docs to all methods
-
 public class gambler {
     // TODO:
     // fix gui
     // add option for random integers for a certain size
     // add option for random size with random integers
+    // add game element
     private static final Random RAND = new Random();
 
     public static void main(String[] args) {

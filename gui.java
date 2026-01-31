@@ -1,39 +1,44 @@
-import java.awt.*; // fix
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 
-// add button to start bogamble sort
-// add timer to count how much time it takes to sort using bogamble sort
-// add entry button to gamble how much time it would take (you win if you get close within the seconds???)
-// add different length sizes to sort
-//from brady
 
 public class gui extends JFrame {
 
-    private JButton button;
-    private JLabel label;
-    
-    public gui() {
-        setTitle("BoGamble Sort");
-        setSize(600, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setBackground(Color.ORANGE); // change later maybe
-        setLayout(null);                              // change later maybe
-
-        button = new JButton("Sort");
-        button.setBounds(100, 100, 100, 100);
-        add(button);
-
-        Font titleFont = new Font("Serif", Font.BOLD, 24);
-        label = new JLabel("Welcome to BoGamble Sort!");
-        label.setBounds(50, 50, 1000, 17);
-        label.setFont(titleFont);
-        add(label);
-
-        setVisible(true);
-    }
 
     public static void main(String[] args) {
-        new gui();
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Test");
+            String boRed = "#CD001A";
+            String boYellow = "#FFDE21";
+            
+
+            // window
+            frame.setSize(500, 500); // width, height
+            frame.setLocationRelativeTo(null); // center on screen
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+            // label
+            JLabel label = new JLabel("BoJangles");
+            label.setHorizontalAlignment(JLabel.CENTER);
+            frame.getContentPane().add(label, BorderLayout.CENTER);
+            label.setFont(new Font("Arial", Font.BOLD, 42));
+
+            
+            // window color and label
+            Color boYellowColor = Color.decode(boYellow);
+            Color boRedColor = Color.decode(boRed);
+            frame.getContentPane().setBackground(boYellowColor);
+            label.setForeground(boRedColor);
+            
+
+            frame.setVisible(true);
+        });
     }
+    
     
 }
