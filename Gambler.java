@@ -11,12 +11,19 @@ public class gambler {
     // fix gui
     // add option for random integers for a certain size
     // add option for random size with random integers
+    private static final Random RAND = new Random();
+
     public static void main(String[] args) {
         int[] array;
         try (Scanner userInput = new Scanner(System.in)) {
             System.out.println("Enter the size of the array you want to be sorted!");
             System.out.println("The lower the size, the faster it will be sorted!");
+            
             int arraySize = userInput.nextInt(); // get the size of the array first
+            if (arraySize <= 0) {
+                System.out.println("Number must be greater than 0");
+                return;
+            }
             array = new int[arraySize]; // make an array on the user input size
             System.out.println("Enter the " + arraySize + " (unsorted) integers, seperated by spaces:");
             // read each integer and store it in the array
@@ -30,20 +37,26 @@ public class gambler {
         System.out.println("Shuffling...");
         
         Instant start = Instant.now();
-        int shuffles = shuffled(array);
+        shuffled(array);
         Instant end = Instant.now();
 
         Duration duration = Duration.between(start, end);
-        seconds(duration);
+        timeTaken(duration);
         
     }
 
-    private static void seconds(Duration duration) {
-        if (duration.toMillis() > 1000) {
-            System.out.println("It took " + duration.toMillis() + " milliseconds to sort.");
-            System.out.println("It took " + duration.toSeconds() + " seconds to sort.");
+    /**
+     * decides whether to print millis or millis and seconds depending on time
+     * 
+     * @param duration the time taken to sort the array
+     */
+    private static void timeTaken(Duration duration) {
+        long ms = duration.toMillis();
+
+        if (ms > 1000) {
+            System.out.println("It took " + (ms / 1000.0) + " seconds to sort.");
         }
-        System.out.println("It took " + duration.toMillis() + " milliseconds to sort.");
+        System.out.println("It took " + ms + " milliseconds to sort.");
     }
 
     /**
@@ -63,13 +76,12 @@ public class gambler {
 
     /**
      * method to shuffle an array randomly
-     * @param array
+     * @param array the user array
      */
     private static void shuffle(int[] array) {
-        Random rand = new Random();
         for (int i = array.length - 1; i > 0; i--) {
             // pick a random index from 0 - i
-            int j = rand.nextInt(i + 1);
+            int j = RAND.nextInt(i + 1);
 
             // swap array[i] with the element at random index j
             int temp = array[i];
@@ -79,8 +91,8 @@ public class gambler {
     }
 
     /**
-     * method that calles shuffle, counts amount of shuffles and displays the final result
-     * @param array
+     * method that calls shuffle, counts amount of shuffles and displays the final result
+     * @param array the user array
      * @return
      */
     public static int shuffled(int[] array) {
