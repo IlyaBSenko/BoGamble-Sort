@@ -1,5 +1,5 @@
-import javax.swing.*; // yeah im using .* cry about it
-import java.awt.*;
+import java.awt.*; // fix
+import javax.swing.*;
 
 // add button to start bogamble sort
 // add timer to count how much time it takes to sort using bogamble sort
@@ -7,14 +7,14 @@ import java.awt.*;
 // add different length sizes to sort
 //from brady
 
-public class GUI extends JFrame {
+public class gui extends JFrame {
 
     private JButton button;
     private JLabel label;
     
-    public GUI() {
+    public gui() {
         setTitle("BoGamble Sort");
-        setSize(400, 400);
+        setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.ORANGE); // change later maybe
         setLayout(null);                              // change later maybe
@@ -33,7 +33,7 @@ public class GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        new GUI();
+        new gui();
     }
     
 }
