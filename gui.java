@@ -9,12 +9,18 @@ import java.awt.Font;
 public class gui extends JFrame {
 
 
+    /**
+     * TODO:
+     * 
+     * add custom BoGamble font art to match font more closely
+     */
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Test");
             String boRed = "#CD001A";
             String boYellow = "#FFDE21";
-            
+
 
             // window
             frame.setSize(500, 500); // width, height
@@ -22,11 +28,15 @@ public class gui extends JFrame {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-            // label
-            JLabel label = new JLabel("BoJangles");
+            // title label
+            JLabel label = new JLabel("BoGamble");
             label.setHorizontalAlignment(JLabel.CENTER);
-            frame.getContentPane().add(label, BorderLayout.CENTER);
-            label.setFont(new Font("Arial", Font.BOLD, 42));
+            frame.getContentPane().add(label, BorderLayout.NORTH);
+            // bojangles font replication
+            label.setFont(label.getFont().deriveFont(Font.BOLD, 42f));
+            label.setFont(new Font("Serif", Font.BOLD, 42));
+            // padding for label to not touch the top too tightly
+            label.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 20, 0)); 
 
             
             // window color and label
