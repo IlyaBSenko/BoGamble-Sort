@@ -42,7 +42,6 @@ public class gambler {
 
         Duration duration = Duration.between(start, end);
         timeTaken(duration);
-        
     }
 
     /**
