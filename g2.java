@@ -1,12 +1,12 @@
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-// adda proper java docs to all methods
+// add proper java docs to all methods
 
 public class g2 {
-
-
     // TODO:
     // add time taken to sort array
     // add java docs
@@ -32,9 +32,30 @@ public class g2 {
         System.out.println("We will now shuffle it until it is sorted!");
         System.out.println("Shuffling...");
         
-        shuffled(array);
+
+        Instant start = Instant.now();
+        int shuffles = shuffled(array);
+        Instant end = Instant.now();
+
+        Duration duration = Duration.between(start, end);
+        seconds(duration);
+        
     }
 
+    private static void seconds(Duration duration) {
+        if (duration.toMillis() > 1000) {
+            System.out.println("It took " + duration.toMillis() + " milliseconds to sort.");
+            System.out.println("It took " + duration.toSeconds() + " seconds to sort.");
+        }
+        System.out.println("It took " + duration.toMillis() + " milliseconds to sort.");
+    }
+
+    /**
+     * Method to check if given array is sorted
+     * 
+     * @param array the user array
+     * @return
+     */
     private static boolean isSorted(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] > array[i + 1]) {
@@ -44,6 +65,10 @@ public class g2 {
         return true;
     }
 
+    /**
+     * method to shuffle an array randomly
+     * @param array
+     */
     private static void shuffle(int[] array) {
         Random rand = new Random();
         for (int i = array.length - 1; i > 0; i--) {
@@ -57,9 +82,14 @@ public class g2 {
         }
     }
 
+    /**
+     * method that calles shuffle, counts amount of shuffles and displays the final result
+     * @param array
+     * @return
+     */
     public static int shuffled(int[] array) {
         int shuffles = 0;
-
+        
         while (!isSorted(array)) {
             shuffle(array);
             shuffles++;
@@ -69,5 +99,7 @@ public class g2 {
         
         return shuffles;
     }
+
+    
     
 }
