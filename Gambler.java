@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class gambler {
+public class Gambler {
     // TODO:
     // fix gui
     // add option for random integers for a certain size
