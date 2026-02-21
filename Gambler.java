@@ -16,7 +16,7 @@ public class gambler {
         int[] array;
         try (Scanner userInput = new Scanner(System.in)) {
             System.out.println("Enter the size of the array you want to be sorted!");
-            System.out.println("The lower the size, the faster it will be sorted!");
+            System.out.println("The lower the size, the faster it will be sorted! (Press Ctrl + C if it runs for too long)");
             
             int arraySize = userInput.nextInt(); // get the size of the array first
             if (arraySize <= 0) {
@@ -24,10 +24,8 @@ public class gambler {
                 return;
             }
             array = new int[arraySize]; // make an array on the user input size
-            System.out.println("Enter the " + arraySize + " (unsorted) integers, seperated by spaces:");
-            // read each integer and store it in the array
             for (int i = 0; i < arraySize; i++) {
-                array[i] = userInput.nextInt();
+                array[i] = RAND.nextInt(1000); // 0..99 
             }
         }
 
