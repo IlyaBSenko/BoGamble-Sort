@@ -35,7 +35,6 @@ public class HelpWindow extends JFrame {
         title.setForeground(boRedColor);
         add(title, BorderLayout.CENTER);
         
-
         JButton menuButton = new JButton("Back to Main Menu");
         menuButton.addActionListener(e -> {
             dispose();
