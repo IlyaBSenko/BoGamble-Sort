@@ -1,6 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import javax.swing.*;
 
 public class gui extends JFrame {
 
@@ -12,7 +12,7 @@ public class gui extends JFrame {
         String boRed = "#CD001A";
         String boYellow = "#FFDE21";
         String welcomeMessage = "Welcome to BoGamble!";
-        String clickMessage = "Click on the button to start playing!";
+        String clickMessage = "Click on the buttons to start playing!";
 
         Color boYellowColor = Color.decode(boYellow);
         Color boRedColor = Color.decode(boRed);
@@ -70,10 +70,16 @@ public class gui extends JFrame {
         buttonsPanel.add(Box.createVerticalStrut(12));
         buttonsPanel.add(rulesButton);
 
+        topButton.addActionListener(e -> {
+            rollTimer.stop();
+            dispose();
+            new GambleWindow();
+        });
+
         rulesButton.addActionListener(e -> {
-            rollTimer.stop();      // IMPORTANT: stop timer before switching windows
-            dispose();             // closes THIS window
-            new HelpWindow();      // opens new window
+            rollTimer.stop();      
+            dispose();             
+            new HelpWindow();      
         });
 
         JPanel mainCenter = new JPanel();
