@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Gambler {
     // TODO:
-    // fix gui
-    // add option for random integers for a certain size
-    // add option for random size with random integers
+    // complete gui
+    // add option for random integers for a certain size?
+    // add option for random size with random integers?
     // add game element
     private static final Random RAND = new Random();
 
