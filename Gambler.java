@@ -14,27 +14,36 @@ public class Gambler {
 
     public static void main(String[] args) {
         int[] array;
-        try (Scanner userInput = new Scanner(System.in)) {
-            System.out.println("Enter the size of the array you want to be sorted!");
-            System.out.println("The lower the size, the faster it will be sorted! (Press Ctrl + C if it runs for too long)");
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Enter the size of the array you want to be sorted!");
+        System.out.println("The lower the size, the faster it will be sorted! (Press Ctrl + C if it runs for too long)");
             
-            int arraySize = userInput.nextInt(); // get the size of the array first
-            if (arraySize <= 0) {
-                System.out.println("Number must be greater than 0");
-                return;
-            }
-            array = new int[arraySize]; // make an array on the user input size
-            for (int i = 0; i < arraySize; i++) {
-                array[i] = RAND.nextInt(1000); // 0..99 
-            }
+        int arraySize = userInput.nextInt(); // get the size of the array first
+        if (arraySize <= 0) {
+            System.out.println("Number must be greater than 0");
+            return;
         }
+        array = new int[arraySize]; // make an array on the user input size
+        for (int i = 0; i < arraySize; i++) {
+            array[i] = RAND.nextInt(1000); // 0..99 
+        }
+
+
+        System.out.println("Do you want to see the array being sorted as it shuffles? (Takes longer as it will print each array iteration).");
+        String speed = userInput.next();
 
         System.out.println("Your array consists of the numbers: " + Arrays.toString(array));
         System.out.println("We will now shuffle it until it is sorted!");
         System.out.println("Shuffling...");
         
         Instant start = Instant.now();
-        shuffled(array);
+        if (speed.equals("y") || speed.equals("yes")) {
+            shuffled_printed(array);
+        }
+        else {
+            shuffled(array);
+        }
+        // shuffled(array);
         Instant end = Instant.now();
 
         Duration duration = Duration.between(start, end);
@@ -96,6 +105,26 @@ public class Gambler {
         
         while (!isSorted(array)) {
             shuffle(array);
+            // System.out.println(Arrays.toString(array));
+            shuffles++;
+        }
+        System.out.println("Here is your sorted array: " + Arrays.toString(array));
+        System.out.println("It took " + shuffles + " shuffles to sort");
+        
+        return shuffles;
+    }
+
+    /**
+     * method that calls shuffle, counts amount of shuffles and displays the final result
+     * @param array the user array
+     * @return
+     */
+    public static int shuffled_printed(int[] array) {
+        int shuffles = 0;
+        
+        while (!isSorted(array)) {
+            shuffle(array);
+            System.out.println(Arrays.toString(array));
             shuffles++;
         }
         System.out.println("Here is your sorted array: " + Arrays.toString(array));
