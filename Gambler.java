@@ -14,40 +14,41 @@ public class Gambler {
 
     public static void main(String[] args) {
         int[] array;
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter the size of the array you want to be sorted!");
-        System.out.println("The lower the size, the faster it will be sorted! (Press Ctrl + C if it runs for too long)");
+        try (Scanner userInput = new Scanner(System.in)) {
+            System.out.println("Enter the size of the array you want to be sorted!");
+            System.out.println("The lower the size, the faster it will be sorted! (Press Ctrl + C if it runs for too long)");
+                
+            int arraySize = userInput.nextInt(); // get the size of the array first
+            if (arraySize <= 0) {
+                System.out.println("Number must be greater than 0");
+                return;
+            }
+            array = new int[arraySize]; // make an array on the user input size
+            for (int i = 0; i < arraySize; i++) {
+                array[i] = RAND.nextInt(1000); // 0..99 
+            }
+
+
+            System.out.println("Do you want to see the array being sorted as it shuffles? (Takes longer as it will print each array iteration).");
+            String speed = userInput.next();
             
-        int arraySize = userInput.nextInt(); // get the size of the array first
-        if (arraySize <= 0) {
-            System.out.println("Number must be greater than 0");
-            return;
-        }
-        array = new int[arraySize]; // make an array on the user input size
-        for (int i = 0; i < arraySize; i++) {
-            array[i] = RAND.nextInt(1000); // 0..99 
-        }
 
+            System.out.println("Your array consists of the numbers: " + Arrays.toString(array));
+            System.out.println("We will now shuffle it until it is sorted!");
+            System.out.println("Shuffling...");
+            
+            Instant start = Instant.now();
+            if (speed.equals("y") || speed.equals("yes")) {
+                shuffled_printed(array);
+            }
+            else {
+                shuffled(array);
+            }
+            Instant end = Instant.now();
 
-        System.out.println("Do you want to see the array being sorted as it shuffles? (Takes longer as it will print each array iteration).");
-        String speed = userInput.next();
-
-        System.out.println("Your array consists of the numbers: " + Arrays.toString(array));
-        System.out.println("We will now shuffle it until it is sorted!");
-        System.out.println("Shuffling...");
-        
-        Instant start = Instant.now();
-        if (speed.equals("y") || speed.equals("yes")) {
-            shuffled_printed(array);
+            Duration duration = Duration.between(start, end);
+            timeTaken(duration);
         }
-        else {
-            shuffled(array);
-        }
-        // shuffled(array);
-        Instant end = Instant.now();
-
-        Duration duration = Duration.between(start, end);
-        timeTaken(duration);
     }
 
     /**
